@@ -1,34 +1,28 @@
 # Faker from W?ToolKit #
 
-## To install WTL tool use virtual envinroment (ex. old one [venv](https://docs.python.org/3/library/venv.html)):
+The generator for human like strings for login, e-mails. etc.
 
-Deploy and run:
-```bash
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
+### Requirements (for Dev)
 
-python ./wfaker.py
-```
+* Pipx (https://pipx.pypa.io/stable/installation/)
+* Poetry (https://python-poetry.org/docs/)
 
-Cleanup:
-```
-rm -rf .venv
+To upgrade Poetry to the newest version:
+
+```shell
+pipx upgrade poetry
 ```
 
-## Another way is to build Docker container:
+#### Setup Python requirements
 
-Deploy and run:
-```
-docker build -t wfaker.my_set .
-# Remove intermediate build image to save disk space
-docker rmi $(docker images -q -f dangling=true)
-docker run --rm wfaker.my_set
+```shell
+POETRY_VIRTUALENVS_IN_PROJECT=1 POETRY_VIRTUALENVS_CREATE=1 poetry env use 3.12
 ```
 
-Cleanup:
+Install dependencies:
+
+```shell
+poetry install
 ```
-docker rmi wfaker.my_set
-docker system prune -f
-```
-> and remember about base Python container (python:3.9-slim)
+
+

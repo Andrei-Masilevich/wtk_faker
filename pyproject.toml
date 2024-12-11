@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "wtk-faker"
+version = "0.1.0"
+description = "The generator for human like strings for login, e-mails. etc."
+authors = ["Andrew M <whatareyourjob@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12.0,<3.13"
+click = "^8.1.7"
+faker = "^33.1.0"
+bloom-filter2 = "2.0.0"
+unidecode = "^1.3.8"
+
+[tool.poetry.group.dev.dependencies]
+wtk-lib = { path = "wlib", develop = true }
+pytest = "^8.2.0"
+
+[tool.poetry.group.build.dependencies]
+pyinstaller = "^6.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

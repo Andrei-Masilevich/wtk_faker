@@ -27,7 +27,6 @@ from optparse import OptionParser
 from wlib import *
 
 import faker
-import os
 import re
 import sys
 import unidecode
@@ -48,6 +47,9 @@ class HumanLike():
         self._db = None
         self.generators = {}
         for l in faker.config.AVAILABLE_LOCALES:
+            # fr_QC locale is deprecated but is been returning by Faker
+            if l == 'fr_QC':
+                l = 'fr_CA'
             fake = faker.Factory.create(l)
             self.generators[l] = [fake.last_name, 
                                   fake.first_name, 
@@ -74,7 +76,6 @@ class HumanLike():
     def suggest_string(self):
         result = ""
         new_len = WRand.get_int(HumanLikeOptions.HSTR_MIN_LEN, 16)
-        fake_chunk = WRand.get_int(3, HumanLikeOptions.CHUNK_LEN)
         rest_chunk = WRand.get_int(2, HumanLikeOptions.CHUNK_LEN)
         generators = self.generators[WRand.choice(list(self.generators.keys()))]
         while len(result) < new_len:
